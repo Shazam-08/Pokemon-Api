@@ -42,29 +42,41 @@ function Pokemon() {
   };
 
   return (
-    <div>
-      <h1>Search for your Pokemon</h1>
-      <input
-        type="text"
-        onChange={(event) => setPokemonName(event.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <h1 className="text-3xl font-bold mb-4">Search for your Pokemon</h1>
+      <div className="flex items-center justify-center">
+        <input
+          type="text"
+          className="border-2 border-gray-400 rounded-md px-4 py-2 mr-4"
+          onChange={(event) => setPokemonName(event.target.value)}
+        />
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-md px-4 py-2"
+          onClick={handleSearch}
+        >
+          Search
+        </button>
+      </div>
       {pokemonChosen ? (
-        <div>
-          <h1>{pokemon.name}</h1>
+        <div className="flex flex-col items-center justify-center mt-8">
+          <h1 className="text-2xl font-bold mb-4">{pokemon.name}</h1>
           {pokemon.img ? (
-            <img src={pokemon.img} alt="picture of pokemon" />
+            <img
+              src={pokemon.img}
+              alt="picture of pokemon"
+              className="mb-4 rounded-md"
+            />
           ) : (
             <p>Loading image...</p>
           )}
-          <h3>species: {pokemon.species}</h3>
-          <h4>HP: {pokemon.hp}</h4>
-          <h4>Attack: {pokemon.attack}</h4>
-          <h4>Defense: {pokemon.defense}</h4>
-          <h4>Type: {pokemon.type}</h4>
+          <h3 className="text-lg font-semibold">species: {pokemon.species}</h3>
+          <h4 className="text-md font-medium">HP: {pokemon.hp}</h4>
+          <h4 className="text-md font-medium">Attack: {pokemon.attack}</h4>
+          <h4 className="text-md font-medium">Defense: {pokemon.defense}</h4>
+          <h4 className="text-md font-medium">Type: {pokemon.type}</h4>
         </div>
       ) : (
-        <h1>Please choose a Pokemon</h1>
+        <h1 className="text-2xl font-bold mt-8">Please choose a Pokemon</h1>
       )}
     </div>
   );
