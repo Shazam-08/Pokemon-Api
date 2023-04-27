@@ -15,7 +15,7 @@ function Pokemon() {
   });
 
   useEffect(() => {
-    if (pokemonName) {
+    if (pokemonName && pokemonChosen) {
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
         .then((response) => {
@@ -28,16 +28,17 @@ function Pokemon() {
             defense: response.data.stats[2].base_stat,
             type: response.data.types[0].type.name,
           });
-          setPokemonChosen(true);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [pokemonName]);
+  }, [pokemonName, pokemonChosen]);
 
   const handleSearch = () => {
-    setPokemonChosen(false);
+    if (pokemonName) {
+      setPokemonChosen(true);
+    }
   };
 
   return (
